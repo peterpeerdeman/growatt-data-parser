@@ -1,0 +1,35 @@
+{
+  "name": "growatt-data-parser",
+  "version": "1.0.0",
+  "description": "Parses growatt solar inverter data and returns the data in a structured readable json object",
+  "main": "index.js",
+  "dependencies": {
+    "binary-parser": "^1.1.5"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=4.8.3"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterpeerdeman/growatt-data-parser.git"
+  },
+  "keywords": [
+    "growatt",
+    "solar",
+    "data",
+    "parser"
+  ],
+  "author": "Peter Peerdeman <peter@peterpeerdeman.nl> (https://peterpeerdeman.nl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peterpeerdeman/growatt-data-parser/issues"
+  },
+  "homepage": "https://github.com/peterpeerdeman/growatt-data-parser#readme"
+}
