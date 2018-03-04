@@ -27,11 +27,18 @@ describe('Growatt Data Parser', () => {
         expect(result.etoday).to.be.closeTo(4.6, 0.001);
     });
 
-    it('should fail on too short data', () => {
+    it('should fail on data without serial number', () => {
         const data = fs.readFileSync('test/testcapture-growatt-GT0012F111-03.cap');
         expect(function() {
             growattDataParser(data);
-        }).to.throw('growatt data has incorrect length');
+        }).to.throw('growatt data does not contain a serialnumber');
     });
+
+    it('should not fail on data with little headingbytes', () => {
+        const data = fs.readFileSync('test/testcapture-growatt-GT0012F111-04.cap');
+        const result = growattDataParser(data);
+        expect(result).to.be.an('object');
+    });
+
 
 });

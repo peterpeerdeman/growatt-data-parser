@@ -15,14 +15,16 @@ function divideBy100(data) {
  * @return {object}
  */
 function parseGrowattData(data) {
-
-    if (data.length !== 396) {
-        throw new Error('growatt data has incorrect length');
+    // Find serialnumber
+    const serialmatch = data.toString('ascii').match(/[A-Z]{2}[0-9]{8}/);
+    if (!serialmatch) {
+        throw new Error('growatt data does not contain a serialnumber');
         return undefined;
     }
+    const skipBytes = serialmatch && serialmatch.index;
 
     const growattSolarByteData = new Parser()
-        .skip(174) //unknown header bytes
+        .skip(skipBytes) //unknown header bytes before serialnumber
         .string('wifimoduleserial', {
             length: 10
         })
