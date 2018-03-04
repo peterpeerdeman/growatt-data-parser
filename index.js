@@ -15,6 +15,13 @@ function divideBy100(data) {
  * @return {object}
  */
 function parseGrowattData(data) {
+    // Find announcementline
+    const announcementMatch = data.toString('ascii').match(/Growatt Inverter/);
+    if (announcementMatch) {
+        throw new Error('announcement packet detected, does not contain inverter data');
+        return undefined;
+    }
+
     // Find serialnumber
     const serialmatch = data.toString('ascii').match(/[A-Z]{2}[0-9]{8}/);
     if (!serialmatch) {

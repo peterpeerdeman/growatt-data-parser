@@ -40,5 +40,12 @@ describe('Growatt Data Parser', () => {
         expect(result).to.be.an('object');
     });
 
+    it('should not produce output on client announcement packet', () => {
+        const data = fs.readFileSync('test/testcapture-growatt-GT0012F111-05.cap');
+        expect(function() {
+            growattDataParser(data);
+        }).to.throw('announcement packet detected, does not contain inverter data');
+    });
+
 
 });
